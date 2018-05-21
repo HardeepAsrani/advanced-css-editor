@@ -8,10 +8,19 @@ jQuery(document).ready(function($) {
 		var id = $(this).find('textarea').attr('id');
 		var id = document.getElementById(id);
 
-		var editor = CodeMirror.fromTextArea(id, {
-			lineNumbers: true,
-			mode: 'css'
-		});
+		if ( ace.editor === 0 ) {
+			var editor = CodeMirror.fromTextArea(id, {
+				lineNumbers: true,
+				mode: 'css',
+				matchBrackets: true,
+			});
+		} else {
+			var editor = wp.CodeMirror.fromTextArea(id, {
+				lineNumbers: true,
+				mode: 'css',
+				matchBrackets: true,
+			});
+		}
 
 		editor.on('change', function(){
 			editor.save(); 
